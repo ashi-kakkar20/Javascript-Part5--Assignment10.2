@@ -1,0 +1,115 @@
+<!-- This assignment helps to master the concept of JS getter and setter -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Assignment 10.2</title>
+</head>
+<body>
+   <script>
+       class Airplane
+       {
+           constructor(name,occupancy,speed) //constructor with name,occupancy and speed as properties
+           {
+               this.name1=name;
+               this.occupancy1=occupancy;
+               this.speed1=speed;
+           }
+
+               get Name()
+               {
+                   return name1;
+               }
+               set Name(value)
+               {
+                   if(value==undefined || value == '')
+                   {
+                       throw new Error("Name cannot be empty"); //Validation for name property
+                       
+                   }
+                   name1=value;
+               }
+
+                get occupancy()
+               {
+                   return occupancy1;
+               }
+               set occupancy(value)
+               {
+                   if(value == undefined || value == '')
+                   {
+                       throw new Error("Occupancy cannot be empty."); // validation for occupancy property.
+                       
+                   }
+
+                   else if(value < 0 || value > 180 )
+                   {
+                    throw new Error("Please enter a valid occupancy");
+
+                   }
+                    occupancy1=value;
+               }
+
+
+                get speed()
+               {
+                   return speed1;
+               }
+               set speed(value)
+               {
+                   if(value==undefined || value == '')
+                   {
+                       throw new Error("speed cannot be empty");
+                       
+                   }
+
+                   if(value <= 0 || value > 900)
+                   {
+                    throw new Error("Please enter a valid Speed"); // Validation for speed property.
+
+                   }
+                   speed1=value;
+               }
+
+               getstatus() //method for printing the current status of the airplane
+               {
+                   console.log( this.name1 + " with " + this.occupancy1 + " occupancy, is moving at " + this.speed1 + "km/hr");
+               }
+
+                increaseSpeed(val) // method for increasing the speed of the airplane
+               { 
+                   this.speed1=this.speed1+val;
+                   console.log("The new increased speed is " +this.speed1 + "km/hr");
+
+               }
+
+                 decreaseSpeed(val)// method for decreasing the speed of the airplane
+               { 
+                   this.speed1=this.speed1-val;
+                   console.log("The new decreased speed is " + this.speed1 + "km/hr");
+
+               }
+
+       }
+
+       let obj1=new Airplane("Boeing A230", 120,500); // Creating airplane objects
+       let obj2=new Airplane("Boeing A320", 150,450);
+       let obj3=new Airplane("Boeing A520", 110,600);
+
+        obj1.getstatus();// calling the airplane getstatus method
+        obj2.getstatus();
+        obj3.getstatus();
+
+        obj1.increaseSpeed(200);
+        obj2.increaseSpeed(200); // Increasing the speed of the airplane by 200km/hr
+        obj3.increaseSpeed(200);
+
+        obj1.getstatus();
+        obj2.getstatus();
+        obj3.getstatus();
+    
+   </script> 
+</body>
+</html>
